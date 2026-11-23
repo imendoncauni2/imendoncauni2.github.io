@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isabel Mendonça — Computer Engineering Portfolio</title>
+  <title>Isabel Mendonça — Cybersecurity & Computer Engineering Portfolio</title>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: false, theme: 'dark' });
@@ -36,23 +36,24 @@
       position: fixed;
       top: -200px; left: 50%;
       transform: translateX(-50%);
-      width: 850px; height: 440px;
-      background: radial-gradient(circle, rgba(236,72,153,0.18) 0%, rgba(168,85,247,0.08) 50%, transparent 70%);
+      width: 900px; height: 460px;
+      background: radial-gradient(circle, rgba(236,72,153,0.18) 0%, rgba(168,85,247,0.09) 50%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
-      max-width: 940px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 64px 24px;
       position: relative;
       z-index: 1;
     }
 
+    /* Header */
     header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
       animation: fadeDown 0.6s ease-out;
     }
 
@@ -61,7 +62,7 @@
       background: rgba(236, 72, 153, 0.14);
       color: #f472b6;
       border: 1px solid rgba(236, 72, 153, 0.35);
-      padding: 5px 14px;
+      padding: 5px 15px;
       border-radius: 99px;
       font-size: 0.82rem;
       font-weight: 600;
@@ -70,7 +71,7 @@
     }
 
     h1 {
-      font-size: 2.85rem;
+      font-size: 2.9rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       background: linear-gradient(to right, #ffffff, #f9a8d4, #d8b4fe);
@@ -81,12 +82,19 @@
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 1.08rem;
-      max-width: 640px;
+      font-size: 1.06rem;
+      max-width: 680px;
       margin: 0 auto 24px auto;
     }
 
-    .github-btn {
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .action-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -96,23 +104,88 @@
       padding: 10px 20px;
       border-radius: 8px;
       border: 1px solid var(--border);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 600;
       transition: all 0.25s ease;
     }
 
-    .github-btn:hover {
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .action-btn:hover {
       border-color: var(--primary);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
     }
 
+    /* Featured Publication Banner */
+    .pub-banner {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.12), rgba(168, 85, 247, 0.12));
+      border: 1px solid rgba(236, 72, 153, 0.35);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      animation: fadeUp 0.65s ease-out;
+    }
+
+    @media (max-width: 720px) {
+      .pub-banner { flex-direction: column; align-items: flex-start; }
+    }
+
+    .pub-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #f472b6;
+      margin-bottom: 6px;
+    }
+
+    .pub-banner h2 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .pub-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .pub-link {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      color: #fdf2f8;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .pub-link:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Category Filters */
     .filters {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 36px;
+      margin-bottom: 34px;
       animation: fadeUp 0.7s ease-out;
     }
 
@@ -135,6 +208,7 @@
       box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
     }
 
+    /* Expandable Project Sections */
     .projects-list {
       display: flex;
       flex-direction: column;
@@ -195,7 +269,7 @@
     }
 
     .project-title-row h3 {
-      font-size: 1.25rem;
+      font-size: 1.24rem;
       color: #fff;
     }
 
@@ -267,7 +341,7 @@
     }
 
     .project-item.open .project-details {
-      max-height: 1400px;
+      max-height: 1500px;
       border-top: 1px solid var(--border);
     }
 
@@ -306,7 +380,7 @@
     }
 
     .detail-block li {
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .files-row {
@@ -397,18 +471,33 @@
 
   <div class="container">
     <header>
-      <span class="badge">Computer Engineering Portfolio</span>
+      <span class="badge">MSc in Computer Science & Engineering (Cybersecurity) • DTU</span>
       <h1>Isabel Mendonça</h1>
-      <p class="subtitle">A structured showcase of my software engineering, cloud infrastructure, cybersecurity, and distributed systems projects. Click any project below to expand its architecture, implementation details, and system diagrams.</p>
-      <a href="https://github.com/imendoncauni2" target="_blank" class="github-btn">
-        View GitHub Profile (@imendoncauni2) ↗
-      </a>
+      <p class="subtitle">Technical architectures, security engineering research, cloud Zero-Trust deployments, and software systems built across my MSc and BSc studies. Click any project to inspect its design and diagrams.</p>
+      <div class="header-actions">
+        <a href="https://github.com/imendoncauni2" target="_blank" class="action-btn primary">
+          GitHub Profile (@imendoncauni2) ↗
+        </a>
+        <a href="https://www.kriativ-tech.com/?p=66536" target="_blank" class="action-btn">
+          Published Paper (Kriativ-Tech) ↗
+        </a>
+      </div>
     </header>
 
+    <!-- Published Article Highlight -->
+    <div class="pub-banner">
+      <div>
+        <span class="pub-tag">📄 Published Research Article • Feb 2025</span>
+        <h2>The Danger of Ransomware Threats: A Comprehensive Analysis</h2>
+        <p class="pub-meta">P. Brandão, <strong>I. Mendonça</strong> • Kriativ-Tech, Edition Nº10 • DOI: 10.31112/kriativ-tech-2023-06-96</p>
+      </div>
+      <a href="https://www.kriativ-tech.com/?p=66536" target="_blank" class="pub-link">Read Article ↗</a>
+    </div>
+
     <div class="filters">
-      <button class="filter-btn active" data-filter="all">All Projects (11)</button>
+      <button class="filter-btn active" data-filter="all">All Projects (12)</button>
       <button class="filter-btn" data-filter="Security">Cybersecurity & SIEM</button>
-      <button class="filter-btn" data-filter="Cloud">Cloud & IaC</button>
+      <button class="filter-btn" data-filter="Cloud">Cloud & Zero-Trust IaC</button>
       <button class="filter-btn" data-filter="Systems">Distributed Systems</button>
       <button class="filter-btn" data-filter="Compilers">Compilers & C++</button>
       <button class="filter-btn" data-filter="Graphics">WebGL & Web</button>
@@ -421,65 +510,122 @@
     const projects = [
       {
         icon: "🕵️‍♀️",
-        title: "Threat Detection, Telemetry & Process Mining (02234)",
+        title: "Real-Time Process Mining vs. SIEM Rules for Multi-Stage Attack Detection",
         category: "Security",
         hasDiagram: true,
-        tags: ["Python", "SIEM / Splunk", "Sysmon & EDR", "Process Mining"],
-        summary: "End-to-end cybersecurity telemetry analysis and process mining pipeline evaluating benign vs. malicious attack traces (Discovery, Bagel, LSASS).",
-        problem: "Detecting multi-stage adversary behavior across heterogeneous endpoint logs (Sysmon, Windows Security, EDR) and modeling execution flows via process mining.",
+        tags: ["Splunk (SPL)", "Sigma Rules", "MITRE ATT&CK", "Sysmon / EDR", "Process Mining"],
+        summary: "Research pipeline benchmarking traditional SIEM correlation rules against real-time process mining for detecting multi-stage intrusions.",
+        problem: "Static SIEM rules often miss complex, multi-stage adversary campaigns or generate high false-positive rates across noisy endpoint telemetry.",
         highlights: [
-          "Parsed and unified raw Windows XML, Sysmon, and Carbon Black EDR telemetry logs (inspect_sysmon_union.py, inspect_cbc.py).",
-          "Built a process mining pipeline (loader.py, eventlog.py, discovery.py, online.py) with automated unit tests and Splunk SIEM alert rules.",
-          "Analyzed attack scenarios including Discovery (A1), Bagel (A2), and LSASS credential dumping (A3)."
+          "Built a Splunk detection pipeline ingesting Sysmon, Windows Security, and EDR logs with Sigma-to-SPL rules mapped to MITRE ATT&CK.",
+          "Developed a Python process-mining framework (discovery.py, online.py, eventlog.py) to model behavioral execution traces.",
+          "Benchmarked detection efficacy across benign baselines and multi-stage attack scenarios (Discovery, Bagel, LSASS credential dumping)."
         ],
         files: ["mining/src/discovery.py", "mining/src/online.py", "scripts/inspect/summarize.py", "siem/splunk_alerts.txt"],
         repoUrl: "https://github.com/imendoncauni2/02234-project",
-        diagramTitle: "Telemetry Ingestion & Process Mining Pipeline",
+        diagramTitle: "SIEM & Real-Time Process Mining Benchmark Architecture",
         diagram: `graph LR
-          RAW[Sysmon / EDR / WinLogs] --> INSP[Telemetry Parsers]
-          INSP --> LOG[Event Log Builder]
-          LOG --> PM[Process Discovery & Online Mining]
-          LOG --> SIEM[Splunk Alerts & Attack Reports]`
-      },
-      {
-        icon: "☁️",
-        title: "AWS IAM Security Lab & Automated Auditing",
-        category: "Cloud",
-        hasDiagram: true,
-        tags: ["Terraform", "AWS IAM", "Python", "Cloud Security"],
-        summary: "Infrastructure-as-Code security lab provisioning AWS IAM resources via Terraform paired with a Python compliance and privilege auditing script.",
-        problem: "Preventing privilege escalation and overly permissive IAM policies in AWS environments through automated auditing.",
-        highlights: [
-          "Provisioned IAM users, roles, and policies declaratively using Terraform (main.tf).",
-          "Developed a Python security auditor (audit_iam.py) to inspect IAM configurations and flag policy misconfigurations."
-        ],
-        files: ["main.tf", "audit_iam.py", "README.md"],
-        repoUrl: "https://github.com/imendoncauni2/aws-iam-lab",
-        diagramTitle: "IaC Provisioning & IAM Security Audit Flow",
-        diagram: `graph LR
-          TF[Terraform / main.tf] -->|Provisions| IAM[AWS IAM Roles & Policies]
-          PY[audit_iam.py] -->|Audits Permissions| IAM
-          PY --> REP[Security & Compliance Findings]`
+          TEL[Sysmon / EDR / WinLogs] --> PAR[Log Parsers & Normalizers]
+          PAR --> SPL[Splunk SIEM / Sigma-to-SPL + MITRE ATT&CK]
+          PAR --> PM[Real-Time Process Mining Engine]
+          SPL & PM --> BENCH[Detection Latency & Accuracy Benchmark]`
       },
       {
         icon: "🏗️",
-        title: "Modular Cloud Infrastructure & Serverless App (DTU)",
+        title: "Zero-Trust Cloud Architecture with Terraform (Azure)",
         category: "Cloud",
         hasDiagram: true,
-        tags: ["Terraform", "Serverless Python", "Cloud Networking", "IaC"],
-        summary: "Modular Infrastructure-as-Code architecture featuring reusable networking modules and a Python serverless function application.",
-        problem: "Designing maintainable, modular cloud infrastructure separating network topology from serverless compute workloads.",
+        tags: ["Terraform", "Azure Zero-Trust", "Managed Identity & RBAC", "Python Azure Function"],
+        summary: "Passwordless Zero-Trust cloud infrastructure deployed via modular Terraform with remote state, RBAC Managed Identities, and strict network segmentation.",
+        problem: "Eliminating hardcoded credentials, shared secrets, and broad network exposure in cloud compute and storage workloads.",
         highlights: [
-          "Structured reusable Terraform networking modules (modules/networking/main.tf, variables.tf, outputs.tf) with state refactoring (moved.tf).",
-          "Deployed a Python serverless Function App (function-app/function_app.py) integrated with the provisioned cloud network."
+          "Provisioned Resource Group, Storage Account, Python Azure Function, and Linux VM using a reusable Terraform networking module.",
+          "Enforced passwordless authentication via User-Assigned Managed Identity and least-privilege RBAC roles.",
+          "Hardened perimeter security with VNet isolation, NSG rules restricting SSH to a single authorized IP, and remote Terraform state storage."
         ],
         files: ["main.tf", "modules/networking/main.tf", "moved.tf", "function-app/function_app.py"],
         repoUrl: "https://github.com/imendoncauni2/dtu-special-course-iac",
-        diagramTitle: "Modular Terraform & Serverless Architecture",
+        diagramTitle: "Passwordless Zero-Trust Azure Deployment",
         diagram: `graph LR
-          ROOT[Root Terraform Config] --> NET[Networking Module]
-          ROOT --> FA[Python Function App]
-          NET -.->|Subnets & Rules| FA`
+          TF[Terraform + Remote State] --> VNET[Isolated VNet & NSG Single-IP SSH]
+          VNET --> VM[Compute VM]
+          VNET --> FA[Python Azure Function]
+          MI[User-Assigned Managed Identity + RBAC] -.->|Passwordless Auth| VM & FA
+          VM & FA -->|RBAC Access| STG[Azure Storage Account]`
+      },
+      {
+        icon: "🎯",
+        title: "Web Application Penetration Testing & RSA Reverse Engineering",
+        category: "Security",
+        hasDiagram: true,
+        tags: ["Burp Suite", "Python", "RSA Cryptography", "CSRF / Bot-Bypass"],
+        summary: "Offensive security assessment intercepting a hardened login flow, reverse-engineering client-side RSA encryption, and automating credential testing.",
+        problem: "Evaluating authentication resilience on a web application protected by client-side RSA payload encryption, anti-CSRF tokens, and bot-detection headers.",
+        highlights: [
+          "Intercepted and analyzed HTTP login transactions using Burp Suite Proxy and Repeater.",
+          "Reverse-engineered the browser's JavaScript RSA public-key encryption routine used prior to credential submission.",
+          "Engineered an automated Python script that dynamically fetches fresh CSRF tokens, encrypts payloads with the extracted RSA key, and mimics browser headers to test analyst and admin accounts."
+        ],
+        files: ["Burp Suite Proxy/Repeater", "Python Exploitation Script", "RSA Payload Encoder"],
+        repoUrl: "",
+        diagramTitle: "Automated Authentication Assessment & RSA Encryption Flow",
+        diagram: `sequenceDiagram
+          participant PY as Python Assessment Script
+          participant WEB as Target Web App
+          PY->>WEB: GET /login (Spoofed Browser Headers)
+          WEB-->>PY: HTML + Session Cookie + CSRF Token
+          Note over PY: Extracts CSRF & Encrypts Password via Reversed RSA
+          PY->>WEB: POST /login (RSA Ciphertext + Valid CSRF)
+          WEB-->>PY: Auth Response (Analyst / Admin Evaluation)`
+      },
+      {
+        icon: "☁️",
+        title: "AWS IAM Security Lab & Automated Compliance Auditing",
+        category: "Cloud",
+        hasDiagram: true,
+        tags: ["Terraform", "AWS IAM", "Python", "Least Privilege"],
+        summary: "Infrastructure-as-Code security lab provisioning AWS IAM resources via Terraform paired with a Python compliance and privilege auditing tool.",
+        problem: "Identifying overly permissive IAM policies, unused credentials, and privilege escalation vectors in AWS environments.",
+        highlights: [
+          "Defined IAM users, groups, roles, and custom policies declaratively with Terraform (main.tf).",
+          "Built a Python security auditor (audit_iam.py) using AWS SDKs to inspect IAM configurations and flag policy violations."
+        ],
+        files: ["main.tf", "audit_iam.py", "README.md"],
+        repoUrl: "https://github.com/imendoncauni2/aws-iam-lab",
+        diagramTitle: "AWS IAM Provisioning & Automated Audit Workflow",
+        diagram: `graph LR
+          TF[Terraform / main.tf] -->|Provisions| IAM[AWS IAM Users, Roles & Policies]
+          PY[audit_iam.py] -->|Inspects Policies| IAM
+          PY --> REP[Least-Privilege Audit Report]`
+      },
+      {
+        icon: "🔐",
+        title: "Secure Multi-Server TLS Communication Protocol",
+        category: "Security",
+        hasDiagram: true,
+        tags: ["Python", "TLS / SSL", "X.509 Certificates", "Socket Security"],
+        summary: "Encrypted client-server communication protocol implementing TLS encryption, digital certificate lifecycle management, and multi-server authentication.",
+        problem: "Ensuring confidentiality, message integrity, and server authenticity across distributed socket connections.",
+        highlights: [
+          "Implemented TLS-wrapped TCP sockets (servidor.py, cliente.py) preventing eavesdropping and tampering.",
+          "Built automated X.509 digital certificate and private key generation (certificados.py) for multi-server verification."
+        ],
+        files: ["servidor.py", "cliente.py", "certificados.py", "server.crt", "server.key"],
+        repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/IRC%20Chat",
+        diagramTitle: "TLS Handshake & Encrypted Multi-Client Tunnel",
+        diagram: `sequenceDiagram
+          participant C1 as Client 1 (cliente.py)
+          participant S as TLS Server (servidor.py)
+          participant C2 as Client 2 (cliente.py)
+          Note over S: Loads server.crt & server.key
+          C1->>S: TCP Connect + TLS ClientHello
+          S-->>C1: ServerHello + X.509 Certificate
+          C1->>S: Key Exchange & Cipher Spec
+          rect rgba(236, 72, 153, 0.15)
+            Note over C1,C2: Encrypted TLS Channel Active
+            C1->>S: Encrypted Payload
+            S->>C2: Authenticated Broadcast
+          end`
       },
       {
         icon: "⏱️",
@@ -502,47 +648,17 @@
           WCRT --> CMP[Analytical vs. Simulated Comparison]`
       },
       {
-        icon: "🔐",
-        title: "Secure IRC Chat (SSL/TLS Client-Server)",
-        category: "Security",
-        hasDiagram: true,
-        tags: ["Python", "TCP Sockets", "SSL/TLS", "X.509 Certificates"],
-        summary: "Multi-client real-time IRC chat architecture secured with end-to-end SSL/TLS socket encryption and custom digital certificates.",
-        problem: "Standard socket-based chat applications transmit messages in plaintext, leaving user communications vulnerable to network sniffing and MITM attacks.",
-        highlights: [
-          "Built a concurrent TCP server (servidor.py) wrapped in an SSL/TLS security context.",
-          "Automated self-signed X.509 certificate and private key generation (certificados.py).",
-          "Implemented client-side TLS handshake verification (cliente.py) before establishing message streams."
-        ],
-        files: ["servidor.py", "cliente.py", "certificados.py", "server.crt", "server.key"],
-        repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/IRC%20Chat",
-        diagramTitle: "SSL/TLS Handshake & Encrypted Channel Architecture",
-        diagram: `sequenceDiagram
-          participant C1 as Client 1 (cliente.py)
-          participant S as IRC Server (servidor.py)
-          participant C2 as Client 2 (cliente.py)
-          Note over S: Loads server.crt & server.key
-          C1->>S: TCP Connect + TLS ClientHello
-          S-->>C1: ServerHello + X.509 Certificate
-          C1->>S: Key Exchange & Cipher Spec
-          rect rgba(236, 72, 153, 0.15)
-            Note over C1,C2: Encrypted SSL/TLS Tunnel Active
-            C1->>S: Encrypted Message
-            S->>C2: Encrypted Broadcast
-          end`
-      },
-      {
         icon: "🛡️",
-        title: "Car USB Monitor & Access Blocker",
+        title: "Endpoint USB Monitor & Access Blocker",
         category: "Security",
         hasDiagram: true,
-        tags: ["Python", "Endpoint Security", "System Events", "Web Dashboard"],
+        tags: ["Python", "Endpoint Security", "Hardware Events", "Web Dashboard"],
         summary: "Real-time USB hardware monitoring service with whitelist validation, automated device blocking, alerts, and a web-based audit log dashboard.",
-        problem: "Unauthorized physical USB connections pose major security risks (malware injection, data exfiltration) on unattended or embedded terminals.",
+        problem: "Preventing unauthorized physical USB connections (BadUSB, malware injection, data exfiltration) on sensitive endpoints.",
         highlights: [
-          "Modular Python daemon listening to OS USB insertion events in real time (detector.py).",
+          "Modular Python service listening to OS USB insertion events in real time (detector.py).",
           "Automated validation against approved device IDs (whitelist.py) with instant blocking (blocker.py) and alerts (notifier.py).",
-          "Built a local web interface (index.html, script.js) to inspect security audit logs."
+          "Built a local web dashboard (index.html, script.js) to inspect security audit logs."
         ],
         files: ["main.py", "detector.py", "whitelist.py", "blocker.py", "notifier.py", "templates/index.html"],
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/Car",
@@ -563,7 +679,7 @@
         hasDiagram: true,
         tags: ["WebGL", "JavaScript", "GLSL Shaders", "3D Math"],
         summary: "Browser-based 3D rendering application built from scratch using WebGL, custom vertex/fragment shaders, and matrix transformations.",
-        problem: "Rendering interactive 3D geometry with real-time camera movement and lighting directly on the GPU without high-level frameworks.",
+        problem: "Rendering interactive 3D geometry with real-time camera movement and lighting directly on the GPU without external engines.",
         highlights: [
           "Configured GPU vertex buffers and compiled custom GLSL shader programs (initShaders.js).",
           "Applied 3D affine transformations (translation, rotation, scaling) and perspective projection matrices via MV.js."
@@ -584,7 +700,7 @@
         hasDiagram: true,
         tags: ["Python", "PLY / Yacc", "Formal Grammars", "Compilers"],
         summary: "Two-stage compiler front-end capable of tokenizing source files and validating syntactic structures against formal grammar rules.",
-        problem: "Parsing structured source inputs and detecting lexical or grammatical syntax errors before code execution.",
+        problem: "Parsing structured source inputs and detecting lexical or grammatical syntax errors before execution.",
         highlights: [
           "Implemented regular-expression token recognition in lexer.py with dedicated unit tests (testa_Lexer.py).",
           "Built an LALR grammar parser in parser.py generating parsing state tables (parsetab.py)."
@@ -593,7 +709,7 @@
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/ANALISADOR%20SINTATICO",
         diagramTitle: "Lexical & Syntactic Analysis Flow",
         diagram: `graph LR
-          IN[Source File / teste.txt] --> LEX[lexer.py]
+          IN[Source File] --> LEX[lexer.py]
           LEX -->|Token Stream| PAR[parser.py]
           TAB[(parsetab.py)] -.-> PAR
           PAR --> RES{Valid Grammar?}
@@ -625,7 +741,7 @@
         problem: "Delivering an engaging multimedia web platform to showcase travel itineraries alongside 3D architectural previews.",
         highlights: [
           "Structured across dedicated views (Viagens, Viajar, Dicas, Modelo Tinkercad, Contactos).",
-          "Integrated 11 custom 3D city animation renders (Rome, Amsterdam, Prague, NYC, etc.) and Tinkercad 3D modeling showcases."
+          "Integrated 11 custom 3D city animation renders and Tinkercad 3D modeling showcases."
         ],
         files: ["viagens.html", "viajar.html", "dicas.html", "modeloTinkercard.html", "contactos.html", "3D/*.mp4"],
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/CRG-%20website%20viagens"
@@ -667,6 +783,12 @@
           </div>
         ` : '';
 
+        const repoButtonHtml = proj.repoUrl ? `
+          <div class="details-footer">
+            <a href="${proj.repoUrl}" target="_blank" class="repo-link">Inspect Code on GitHub ↗</a>
+          </div>
+        ` : '';
+
         item.innerHTML = `
           <div class="project-header">
             <div class="header-left">
@@ -704,15 +826,12 @@
               </div>
 
               <div class="files-row">
-                <span class="files-label">Key Files:</span>
+                <span class="files-label">Key Components:</span>
                 ${proj.files.map(f => `<span class="file-pill">${f}</span>`).join('')}
               </div>
 
               ${diagramHtml}
-
-              <div class="details-footer">
-                <a href="${proj.repoUrl}" target="_blank" class="repo-link">Inspect Code on GitHub ↗</a>
-              </div>
+              ${repoButtonHtml}
             </div>
           </div>
         `;
