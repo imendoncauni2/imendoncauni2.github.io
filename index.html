@@ -1,105 +1,672 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio — Projetos</title>
+  <title>Luis Mendonça — Computer Engineering Portfolio</title>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+    window.mermaid = mermaid;
   </script>
   <style>
+    :root {
+      --bg: #080c14;
+      --surface: #111827;
+      --surface-expanded: #151e32;
+      --border: #1f2937;
+      --border-active: #3b82f6;
+      --primary: #3b82f6;
+      --accent: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-      max-width: 850px;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 850px; height: 420px;
+      background: radial-gradient(circle, rgba(59,130,246,0.14) 0%, rgba(16,185,129,0.05) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 920px;
       margin: 0 auto;
-      padding: 40px 20px;
-      line-height: 1.6;
+      padding: 64px 24px;
+      position: relative;
+      z-index: 1;
     }
+
+    /* Header */
     header {
-      margin-bottom: 40px;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 20px;
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeDown 0.6s ease-out;
     }
-    h1 { margin: 0 0 8px 0; font-size: 2rem; color: #0f172a; }
-    .subtitle { color: #64748b; font-size: 1.1rem; margin: 0; }
-    .card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
-    .card h2 { margin-top: 0; color: #0f172a; font-size: 1.35rem; }
-    .tags { margin-bottom: 16px; }
-    .tag {
+
+    .badge {
       display: inline-block;
-      background: #eff6ff;
-      color: #2563eb;
+      background: rgba(59, 130, 246, 0.12);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #ffffff, #9ca3af);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      max-width: 620px;
+      margin: 0 auto 24px auto;
+    }
+
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .github-btn:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.18);
+    }
+
+    /* Category Filters */
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+      animation: fadeUp 0.7s ease-out;
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Expandable Project Sections */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .project-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      animation: fadeUp 0.5s ease-out backwards;
+    }
+
+    .project-item:hover {
+      border-color: #374151;
+    }
+
+    .project-item.open {
+      background: var(--surface-expanded);
+      border-color: var(--border-active);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-header {
+      padding: 24px 28px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      user-select: none;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .project-icon {
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      min-width: 46px; height: 46px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      margin-top: 2px;
+    }
+
+    .project-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .project-title-row h3 {
+      font-size: 1.25rem;
+      color: #fff;
+    }
+
+    .diagram-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .project-summary {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 5px;
+      background: rgba(59, 130, 246, 0.12);
+      color: #93c5fd;
+    }
+
+    .toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .project-item:hover .toggle-btn {
+      border-color: var(--primary);
+      color: #60a5fa;
+    }
+
+    .chevron {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .project-item.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Expandable Body (Accordion) */
+    .project-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-top: 0px solid var(--border);
+    }
+
+    .project-item.open .project-details {
+      max-height: 1200px;
+      border-top: 1px solid var(--border);
+    }
+
+    .details-inner {
+      padding: 26px 28px 30px 28px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 700px) {
+      .details-grid { grid-template-columns: 1fr; }
+      .project-header { flex-direction: column; align-items: flex-start; }
+      .toggle-btn { align-self: flex-start; }
+    }
+
+    .detail-block h4 {
+      color: #60a5fa;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .detail-block p, .detail-block ul {
+      color: #d1d5db;
+      font-size: 0.94rem;
+    }
+
+    .detail-block ul {
+      padding-left: 18px;
+    }
+
+    .detail-block li {
+      margin-bottom: 5px;
+    }
+
+    .files-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .files-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .file-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      background: #080c14;
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 5px;
+      color: #cbd5e1;
+    }
+
+    .diagram-box {
+      background: #080c14;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 22px;
+    }
+
+    .diagram-caption {
       font-size: 0.8rem;
       font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-right: 6px;
+      color: #34d399;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
     }
-    .esquema-box {
-      background: #f1f5f9;
-      padding: 16px;
+
+    .mermaid-wrapper {
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+    }
+
+    .details-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 18px;
       border-radius: 8px;
-      margin-top: 16px;
-      text-align: center;
-    }
-    .esquema-titulo {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: #475569;
-      margin-bottom: 8px;
-      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .repo-link:hover { background: #2563eb; }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>O Teu Nome</h1>
-    <p class="subtitle">Portfólio de Projetos Técnicos & Académicos</p>
-  </header>
+  <div class="bg-glow"></div>
 
-  <!-- PROJETO 1 -->
-  <div class="card">
-    <h2>Nome do Projeto 1</h2>
-    <div class="tags">
-      <span class="tag">Tecnologia 1</span>
-      <span class="tag">Tecnologia 2</span>
-    </div>
-    <p><strong>Objetivo:</strong> Explica em 1 ou 2 frases o problema que este projeto resolveu.</p>
-    <p><strong>O que fiz:</strong> Descreve aqui a tua solução, arquitetura ou principais funcionalidades.</p>
-    <p><strong>Resultado:</strong> O impacto final ou o que aprendeste.</p>
+  <div class="container">
+    <header>
+      <span class="badge">B.Sc. in Computer Engineering</span>
+      <h1>Luis Mendonça</h1>
+      <p class="subtitle">A structured overview of my academic and technical software engineering projects. Click any project section below to expand its architecture, implementation details, and system diagrams.</p>
+      <a href="https://github.com/imendoncauni2/My-Projects" target="_blank" class="github-btn">
+        View Full Repository on GitHub ↗
+      </a>
+    </header>
 
-    <div class="esquema-box">
-      <div class="esquema-titulo">Arquitetura / Fluxo do Projeto:</div>
-      <div class="mermaid">
-        graph LR
-          A[Dados de Entrada] --> B[Processamento]
-          B --> C[Base de Dados]
-          B --> D[Resultado Final]
-      </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All Projects (7)</button>
+      <button class="filter-btn" data-filter="Security">Security & Networking</button>
+      <button class="filter-btn" data-filter="Compilers">Compilers & Parsing</button>
+      <button class="filter-btn" data-filter="Graphics">WebGL & Web</button>
+      <button class="filter-btn" data-filter="Cpp">C++ / OOP</button>
     </div>
+
+    <div class="projects-list" id="projects-list"></div>
   </div>
 
-  <!-- PROJETO 2 (Copia e cola este bloco para adicionar mais projetos) -->
-  <div class="card">
-    <h2>Nome do Projeto 2</h2>
-    <div class="tags">
-      <span class="tag">Ferramenta A</span>
-      <span class="tag">Ferramenta B</span>
-    </div>
-    <p><strong>Objetivo:</strong> Breve descrição do contexto do projeto.</p>
-    <p><strong>O que fiz:</strong> Detalhes técnicos da implementação.</p>
-  </div>
+  <script>
+    const projects = [
+      {
+        icon: "🔐",
+        title: "Secure IRC Chat (SSL/TLS Client-Server)",
+        category: "Security",
+        hasDiagram: true,
+        tags: ["Python", "TCP Sockets", "SSL/TLS", "X.509 Certificates"],
+        summary: "Multi-client real-time IRC chat architecture secured with end-to-end SSL/TLS socket encryption and custom digital certificates.",
+        problem: "Standard socket-based chat applications transmit messages in plaintext, leaving user communications vulnerable to network sniffing and man-in-the-middle attacks.",
+        highlights: [
+          "Built a concurrent TCP server (servidor.py) wrapped in an SSL/TLS security context.",
+          "Automated self-signed X.509 certificate and private key generation (certificados.py).",
+          "Implemented client-side TLS handshake verification (cliente.py) before establishing message streams."
+        ],
+        files: ["servidor.py", "cliente.py", "certificados.py", "server.crt", "server.key"],
+        folder: "IRC%20Chat",
+        diagramTitle: "SSL/TLS Handshake & Encrypted Channel Architecture",
+        diagram: `sequenceDiagram
+          participant C1 as Client 1 (cliente.py)
+          participant S as IRC Server (servidor.py)
+          participant C2 as Client 2 (cliente.py)
+          Note over S: Loads server.crt & server.key
+          C1->>S: TCP Connect + TLS ClientHello
+          S-->>C1: ServerHello + X.509 Certificate
+          C1->>S: Key Exchange & Cipher Spec
+          rect rgba(16, 185, 129, 0.12)
+            Note over C1,C2: Encrypted SSL/TLS Tunnel Active
+            C1->>S: Encrypted Message
+            S->>C2: Encrypted Broadcast
+          end`
+      },
+      {
+        icon: "🛡️",
+        title: "Car USB Monitor & Access Blocker",
+        category: "Security",
+        hasDiagram: true,
+        tags: ["Python", "Endpoint Security", "System Events", "Web Dashboard"],
+        summary: "Real-time USB hardware monitoring service with whitelist validation, automated device blocking, alerts, and a web-based audit log dashboard.",
+        problem: "Unauthorized physical USB connections pose major security risks (malware injection, data exfiltration) on unattended or embedded terminals.",
+        highlights: [
+          "Modular Python daemon listening to OS USB insertion events in real time (detector.py).",
+          "Automated validation against approved device IDs (whitelist.py) with instant blocking (blocker.py) and desktop notifications (notifier.py).",
+          "Built a local web interface (index.html, script.js) to inspect security audit logs (usb_monitor.log)."
+        ],
+        files: ["main.py", "detector.py", "whitelist.py", "blocker.py", "notifier.py", "logger.py", "templates/index.html"],
+        folder: "Car",
+        diagramTitle: "USB Event Detection & Enforcement Pipeline",
+        diagram: `graph LR
+          USB[USB Port Event] --> DET[detector.py]
+          DET --> WL{whitelist.py}
+          WL -->|Trusted ID| LOG[logger.py]
+          WL -->|Unknown Device| BLK[blocker.py]
+          BLK --> NOT[notifier.py]
+          BLK --> LOG
+          LOG --> WEB[Web Dashboard]`
+      },
+      {
+        icon: "🧊",
+        title: "WebGL 3D Interactive Graphics Engine",
+        category: "Graphics",
+        hasDiagram: true,
+        tags: ["WebGL", "JavaScript", "GLSL Shaders", "3D Math"],
+        summary: "Browser-based 3D rendering application built from scratch using WebGL, custom vertex/fragment shaders, and matrix transformations.",
+        problem: "Rendering interactive 3D geometry with real-time camera movement and lighting directly on the GPU without high-level frameworks like Three.js.",
+        highlights: [
+          "Configured GPU vertex buffers and compiled custom GLSL shader programs (initShaders.js).",
+          "Applied 3D affine transformations (translation, rotation, scaling) and perspective projection matrices via MV.js.",
+          "Added interactive user controls for real-time scene manipulation."
+        ],
+        files: ["Projeto.html", "Projeto.js", "Projeto.css", "js/MV.js", "js/initShaders.js"],
+        folder: "CRG%20-%20Projeto%20WebGL",
+        diagramTitle: "WebGL GPU Rendering Pipeline",
+        diagram: `graph LR
+          A[Vertex Arrays & MV.js Matrices] --> B[Vertex Shader]
+          B --> C[Primitive Assembly & Rasterization]
+          C --> D[Fragment Shader / Lighting]
+          D --> E[HTML5 Canvas Framebuffer]`
+      },
+      {
+        icon: "⚙️",
+        title: "Lexical & Syntax Analyzer (Compiler Front-End)",
+        category: "Compilers",
+        hasDiagram: true,
+        tags: ["Python", "PLY / Yacc", "Formal Grammars", "Compilers"],
+        summary: "Two-stage compiler front-end capable of tokenizing source files and validating syntactic structures against formal grammar rules.",
+        problem: "Parsing structured source inputs and detecting lexical or grammatical syntax errors before code execution.",
+        highlights: [
+          "Implemented regular-expression token recognition in lexer.py with dedicated unit tests (testa_Lexer.py).",
+          "Built an LALR grammar parser in parser.py generating parsing state tables (parsetab.py).",
+          "Validated multi-case test suites (teste1.txt, teste2.txt, teste3.txt)."
+        ],
+        files: ["main.py", "lexer.py", "parser.py", "parsetab.py", "testa_Lexer.py", "testa_Parser.py"],
+        folder: "ANALISADOR%20SINTATICO",
+        diagramTitle: "Lexical & Syntactic Analysis Flow",
+        diagram: `graph LR
+          IN[Source File / teste.txt] --> LEX[lexer.py]
+          LEX -->|Token Stream| PAR[parser.py]
+          TAB[(parsetab.py)] -.-> PAR
+          PAR --> RES{Valid Grammar?}
+          RES -->|Yes| OK[Accepted]
+          RES -->|No| ERR[Syntax Error]`
+      },
+      {
+        icon: "🏟️",
+        title: "Sports Club Management System (C++)",
+        category: "Cpp",
+        hasDiagram: false,
+        tags: ["C++", "CMake", "Object-Oriented Programming", "Inheritance"],
+        summary: "Modular C++ application modeling sports club personnel hierarchies using polymorphism, encapsulation, and CMake build automation.",
+        problem: "Designing a clean, extensible class hierarchy to manage shared and role-specific data across different club members.",
+        highlights: [
+          "Engineered a base People class with specialized derived classes for Players and Staff.",
+          "Separated interface declarations (.h) from implementations (.cpp) for clean modularity.",
+          "Configured cross-platform builds via CMakeLists.txt."
+        ],
+        files: ["main.cpp", "people.h / .cpp", "players.h / .cpp", "staff.h / .cpp", "CMakeLists.txt"],
+        folder: "Advanced%20Programming"
+      },
+      {
+        icon: "✈️",
+        title: "Interactive Travel Portal & 3D Showcase",
+        category: "Graphics",
+        hasDiagram: false,
+        tags: ["HTML5", "CSS3", "JavaScript", "3D Media"],
+        summary: "Multi-page responsive travel website combining destination guides, interactive scripts, and embedded 3D city animations.",
+        problem: "Delivering an engaging multimedia web platform to showcase travel itineraries alongside 3D architectural previews.",
+        highlights: [
+          "Structured across dedicated views (Viagens, Viajar, Dicas, Modelo Tinkercad, Contactos).",
+          "Integrated 11 custom 3D city animation renders (Rome, Amsterdam, Prague, NYC, etc.) and Tinkercad 3D modeling showcases.",
+          "Modularized stylesheets and interactive DOM scripts per section."
+        ],
+        files: ["viagens.html", "viajar.html", "dicas.html", "modeloTinkercard.html", "contactos.html", "3D/*.mp4"],
+        folder: "CRG-%20website%20viagens"
+      },
+      {
+        icon: "🧩",
+        title: "Expression Syntax Evaluator",
+        category: "Compilers",
+        hasDiagram: false,
+        tags: ["Python", "Parsing", "Grammar Rules", "Testing"],
+        summary: "Standalone lexical and syntactic engine focused on parsing and validating mathematical and logical expressions.",
+        problem: "Ensuring accurate operator precedence and structural validation when parsing nested expressions.",
+        highlights: [
+          "Decoupled tokenizer (lexer.py) and recursive grammar parser (parser.py).",
+          "Includes isolated verification scripts for both lexical tokens and parse trees."
+        ],
+        files: ["main.py", "lexer.py", "parser.py", "testa_Lexer.py", "testa_Parser.py"],
+        folder: "SINTATICO"
+      }
+    ];
 
+    const listEl = document.getElementById('projects-list');
+
+    function renderProjects(filter = 'all') {
+      listEl.innerHTML = '';
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+
+      filtered.forEach((proj, index) => {
+        const repoUrl = `https://github.com/imendoncauni2/My-Projects/tree/main/${proj.folder}`;
+        const item = document.createElement('div');
+        item.className = 'project-item';
+        item.style.animationDelay = `${index * 0.06}s`;
+
+        const diagramHtml = proj.hasDiagram ? `
+          <div class="diagram-box">
+            <div class="diagram-caption">Architecture & Flow Diagram</div>
+            <div class="mermaid-wrapper">
+              <div class="mermaid" data-rendered="false">${proj.diagram}</div>
+            </div>
+          </div>
+        ` : '';
+
+        item.innerHTML = `
+          <div class="project-header">
+            <div class="header-left">
+              <div class="project-icon">${proj.icon}</div>
+              <div>
+                <div class="project-title-row">
+                  <h3>${proj.title}</h3>
+                  ${proj.hasDiagram ? '<span class="diagram-badge">+ Architecture Diagram</span>' : ''}
+                </div>
+                <p class="project-summary">${proj.summary}</p>
+                <div class="tags">
+                  ${proj.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+            <div class="toggle-btn">
+              <span class="btn-label">Details</span>
+              <span class="chevron">▼</span>
+            </div>
+          </div>
+
+          <div class="project-details">
+            <div class="details-inner">
+              <div class="details-grid">
+                <div class="detail-block">
+                  <h4>Context & Problem</h4>
+                  <p>${proj.problem}</p>
+                </div>
+                <div class="detail-block">
+                  <h4>Implementation Highlights</h4>
+                  <ul>
+                    ${proj.highlights.map(h => `<li>${h}</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+
+              <div class="files-row">
+                <span class="files-label">Key Files:</span>
+                ${proj.files.map(f => `<span class="file-pill">${f}</span>`).join('')}
+              </div>
+
+              ${diagramHtml}
+
+              <div class="details-footer">
+                <a href="${repoUrl}" target="_blank" class="repo-link">Inspect Code on GitHub ↗</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const header = item.querySelector('.project-header');
+        const label = item.querySelector('.btn-label');
+
+        header.addEventListener('click', async () => {
+          const isOpen = item.classList.toggle('open');
+          label.textContent = isOpen ? 'Hide' : 'Details';
+
+          if (isOpen && proj.hasDiagram && window.mermaid) {
+            const mermaidEl = item.querySelector('.mermaid');
+            if (mermaidEl && mermaidEl.dataset.rendered === 'false') {
+              mermaidEl.dataset.rendered = 'true';
+              await window.mermaid.run({ nodes: [mermaidEl] });
+            }
+          }
+        });
+
+        listEl.appendChild(item);
+      });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    renderProjects();
+  </script>
 </body>
 </html>
