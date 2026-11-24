@@ -3,23 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isabel Mendonça — Cybersecurity & Computer Engineering Portfolio</title>
+  <title>Isabel Mendonça — Cloud & Security Engineering Portfolio</title>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#1a2230',
+        primaryTextColor: '#f8fafc',
+        primaryBorderColor: '#fbbf24',
+        lineColor: '#fbbf24',
+        secondaryColor: '#131822',
+        tertiaryColor: '#0b0e14',
+        actorBkg: '#1a2230',
+        actorBorder: '#fbbf24',
+        actorTextColor: '#f8fafc',
+        signalColor: '#fbbf24',
+        signalTextColor: '#f8fafc',
+        noteBkgColor: '#252e3f',
+        noteTextColor: '#fde68a',
+        noteBorderColor: '#fbbf24',
+        fontSize: '15px',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      }
+    });
     window.mermaid = mermaid;
   </script>
   <style>
     :root {
-      --bg: #0f0913;
-      --surface: #191122;
-      --surface-expanded: #22162e;
-      --border: #2e1f3d;
-      --border-active: #ec4899;
-      --primary: #ec4899;
-      --secondary: #a855f7;
-      --text: #fdf2f8;
-      --text-muted: #cbb6d4;
+      --bg: #0b0e14;
+      --surface: #131822;
+      --surface-expanded: #181f2c;
+      --border: #252e3f;
+      --border-active: #fbbf24;
+      --primary: #fbbf24;
+      --secondary: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,8 +57,8 @@
       position: fixed;
       top: -200px; left: 50%;
       transform: translateX(-50%);
-      width: 900px; height: 460px;
-      background: radial-gradient(circle, rgba(236,72,153,0.18) 0%, rgba(168,85,247,0.09) 50%, transparent 70%);
+      width: 900px; height: 420px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.11) 0%, rgba(245, 158, 11, 0.04) 50%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -59,9 +80,9 @@
 
     .badge {
       display: inline-block;
-      background: rgba(236, 72, 153, 0.14);
-      color: #f472b6;
-      border: 1px solid rgba(236, 72, 153, 0.35);
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.32);
       padding: 5px 15px;
       border-radius: 99px;
       font-size: 0.82rem;
@@ -74,7 +95,7 @@
       font-size: 2.9rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      background: linear-gradient(to right, #ffffff, #f9a8d4, #d8b4fe);
+      background: linear-gradient(to right, #ffffff, #fef3c7, #fbbf24);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 12px;
@@ -112,19 +133,20 @@
     .action-btn.primary {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-color: transparent;
-      color: #fff;
+      color: #0b0e14;
+      font-weight: 700;
     }
 
     .action-btn:hover {
       border-color: var(--primary);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
+      box-shadow: 0 8px 20px rgba(251, 191, 36, 0.18);
     }
 
     /* Featured Publication Banner */
     .pub-banner {
-      background: linear-gradient(135deg, rgba(236, 72, 153, 0.12), rgba(168, 85, 247, 0.12));
-      border: 1px solid rgba(236, 72, 153, 0.35);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.09), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(251, 191, 36, 0.3);
       border-radius: 16px;
       padding: 24px 28px;
       margin-bottom: 40px;
@@ -145,7 +167,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #f472b6;
+      color: #fbbf24;
       margin-bottom: 6px;
     }
 
@@ -161,9 +183,9 @@
     }
 
     .pub-link {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(236, 72, 153, 0.4);
-      color: #fdf2f8;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fef3c7;
       text-decoration: none;
       padding: 10px 18px;
       border-radius: 8px;
@@ -176,7 +198,7 @@
     .pub-link:hover {
       background: var(--primary);
       border-color: var(--primary);
-      color: #fff;
+      color: #0b0e14;
     }
 
     /* Category Filters */
@@ -201,11 +223,17 @@
       transition: all 0.2s ease;
     }
 
-    .filter-btn:hover, .filter-btn.active {
+    .filter-btn:hover {
+      border-color: rgba(251, 191, 36, 0.5);
+      color: #fef3c7;
+    }
+
+    .filter-btn.active {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
+      color: #0b0e14;
+      font-weight: 700;
       border-color: transparent;
-      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
+      box-shadow: 0 4px 14px rgba(251, 191, 36, 0.25);
     }
 
     /* Expandable Project Sections */
@@ -225,13 +253,13 @@
     }
 
     .project-item:hover {
-      border-color: #4c2d66;
+      border-color: #3b475e;
     }
 
     .project-item.open {
       background: var(--surface-expanded);
       border-color: var(--border-active);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 18px rgba(236, 72, 153, 0.12);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 18px rgba(251, 191, 36, 0.1);
     }
 
     .project-header {
@@ -251,13 +279,23 @@
     }
 
     .project-icon {
-      font-size: 1.5rem;
-      background: rgba(236, 72, 153, 0.1);
-      border: 1px solid rgba(236, 72, 153, 0.2);
-      min-width: 46px; height: 46px;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      min-width: 44px; height: 44px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 10px;
       margin-top: 2px;
+    }
+
+    .project-icon svg {
+      width: 21px;
+      height: 21px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .project-title-row {
@@ -269,7 +307,7 @@
     }
 
     .project-title-row h3 {
-      font-size: 1.24rem;
+      font-size: 1.22rem;
       color: #fff;
     }
 
@@ -278,9 +316,9 @@
       font-weight: 600;
       padding: 2px 8px;
       border-radius: 4px;
-      background: rgba(168, 85, 247, 0.16);
-      color: #e9d5ff;
-      border: 1px solid rgba(168, 85, 247, 0.35);
+      background: rgba(251, 191, 36, 0.12);
+      color: #fde68a;
+      border: 1px solid rgba(251, 191, 36, 0.3);
     }
 
     .project-summary {
@@ -300,8 +338,9 @@
       font-weight: 600;
       padding: 3px 9px;
       border-radius: 5px;
-      background: rgba(236, 72, 153, 0.14);
-      color: #f9a8d4;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
     }
 
     .toggle-btn {
@@ -321,11 +360,12 @@
 
     .project-item:hover .toggle-btn {
       border-color: var(--primary);
-      color: #f472b6;
+      color: #fbbf24;
     }
 
     .chevron {
       display: inline-block;
+      font-size: 0.72rem;
       transition: transform 0.3s ease;
     }
 
@@ -341,7 +381,7 @@
     }
 
     .project-item.open .project-details {
-      max-height: 1500px;
+      max-height: 1800px;
       border-top: 1px solid var(--border);
     }
 
@@ -363,7 +403,7 @@
     }
 
     .detail-block h4 {
-      color: #f472b6;
+      color: #fbbf24;
       font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -371,7 +411,7 @@
     }
 
     .detail-block p, .detail-block ul {
-      color: #f3e8ff;
+      color: #e2e8f0;
       font-size: 0.94rem;
     }
 
@@ -401,34 +441,49 @@
     .file-pill {
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 0.78rem;
-      background: #0f0913;
+      background: #0b0e14;
       border: 1px solid var(--border);
       padding: 3px 8px;
       border-radius: 5px;
-      color: #f5d0fe;
+      color: #fde68a;
     }
 
+    /* Larger, clearer diagrams */
     .diagram-box {
-      background: #0f0913;
+      background: #0b0e14;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
       margin-bottom: 22px;
     }
 
     .diagram-caption {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #e879f9;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fbbf24;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
     }
 
     .mermaid-wrapper {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .mermaid {
       display: flex;
       justify-content: center;
-      overflow-x: auto;
+      width: 100%;
+    }
+
+    .mermaid svg {
+      width: 100% !important;
+      max-width: 820px !important;
+      height: auto !important;
+      min-height: 220px;
     }
 
     .details-footer {
@@ -441,17 +496,17 @@
       align-items: center;
       gap: 6px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
+      color: #0b0e14;
       text-decoration: none;
       padding: 9px 18px;
       border-radius: 8px;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       transition: opacity 0.2s, transform 0.2s;
     }
 
     .repo-link:hover {
-      opacity: 0.9;
+      opacity: 0.92;
       transform: translateY(-1px);
     }
 
@@ -471,12 +526,12 @@
 
   <div class="container">
     <header>
-      <span class="badge">MSc in Computer Science & Engineering (Cybersecurity) • DTU</span>
+      <span class="badge">Security Operations & IAM • MSc Cybersecurity Candidate (DTU)</span>
       <h1>Isabel Mendonça</h1>
-      <p class="subtitle">Technical architectures, security engineering research, cloud Zero-Trust deployments, and software systems built across my MSc and BSc studies. Click any project to inspect its design and diagrams.</p>
+      <p class="subtitle">Cloud security architectures, Zero-Trust Infrastructure as Code, SIEM detection engineering, and security automation projects. Select any entry below to inspect system designs and architecture diagrams.</p>
       <div class="header-actions">
         <a href="https://github.com/imendoncauni2" target="_blank" class="action-btn primary">
-          GitHub Profile (@imendoncauni2) ↗
+          GitHub (@imendoncauni2) ↗
         </a>
         <a href="https://www.kriativ-tech.com/?p=66536" target="_blank" class="action-btn">
           Published Paper (Kriativ-Tech) ↗
@@ -487,7 +542,7 @@
     <!-- Published Article Highlight -->
     <div class="pub-banner">
       <div>
-        <span class="pub-tag">📄 Published Research Article • Feb 2025</span>
+        <span class="pub-tag">Published Research • Feb 2025</span>
         <h2>The Danger of Ransomware Threats: A Comprehensive Analysis</h2>
         <p class="pub-meta">P. Brandão, <strong>I. Mendonça</strong> • Kriativ-Tech, Edition Nº10 • DOI: 10.31112/kriativ-tech-2023-06-96</p>
       </div>
@@ -496,8 +551,8 @@
 
     <div class="filters">
       <button class="filter-btn active" data-filter="all">All Projects (12)</button>
-      <button class="filter-btn" data-filter="Security">Cybersecurity & SIEM</button>
       <button class="filter-btn" data-filter="Cloud">Cloud & Zero-Trust IaC</button>
+      <button class="filter-btn" data-filter="Security">Cybersecurity & SIEM</button>
       <button class="filter-btn" data-filter="Systems">Distributed Systems</button>
       <button class="filter-btn" data-filter="Compilers">Compilers & C++</button>
       <button class="filter-btn" data-filter="Graphics">WebGL & Web</button>
@@ -507,31 +562,20 @@
   </div>
 
   <script>
+    const icons = {
+      cloud: `<svg viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`,
+      shield: `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+      activity: `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+      lock: `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+      terminal: `<svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+      cpu: `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>`,
+      code: `<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+      layers: `<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`
+    };
+
     const projects = [
       {
-        icon: "🕵️‍♀️",
-        title: "Real-Time Process Mining vs. SIEM Rules for Multi-Stage Attack Detection",
-        category: "Security",
-        hasDiagram: true,
-        tags: ["Splunk (SPL)", "Sigma Rules", "MITRE ATT&CK", "Sysmon / EDR", "Process Mining"],
-        summary: "Research pipeline benchmarking traditional SIEM correlation rules against real-time process mining for detecting multi-stage intrusions.",
-        problem: "Static SIEM rules often miss complex, multi-stage adversary campaigns or generate high false-positive rates across noisy endpoint telemetry.",
-        highlights: [
-          "Built a Splunk detection pipeline ingesting Sysmon, Windows Security, and EDR logs with Sigma-to-SPL rules mapped to MITRE ATT&CK.",
-          "Developed a Python process-mining framework (discovery.py, online.py, eventlog.py) to model behavioral execution traces.",
-          "Benchmarked detection efficacy across benign baselines and multi-stage attack scenarios (Discovery, Bagel, LSASS credential dumping)."
-        ],
-        files: ["mining/src/discovery.py", "mining/src/online.py", "scripts/inspect/summarize.py", "siem/splunk_alerts.txt"],
-        repoUrl: "https://github.com/imendoncauni2/02234-project",
-        diagramTitle: "SIEM & Real-Time Process Mining Benchmark Architecture",
-        diagram: `graph LR
-          TEL[Sysmon / EDR / WinLogs] --> PAR[Log Parsers & Normalizers]
-          PAR --> SPL[Splunk SIEM / Sigma-to-SPL + MITRE ATT&CK]
-          PAR --> PM[Real-Time Process Mining Engine]
-          SPL & PM --> BENCH[Detection Latency & Accuracy Benchmark]`
-      },
-      {
-        icon: "🏗️",
+        icon: icons.cloud,
         title: "Zero-Trust Cloud Architecture with Terraform (Azure)",
         category: "Cloud",
         hasDiagram: true,
@@ -546,15 +590,89 @@
         files: ["main.tf", "modules/networking/main.tf", "moved.tf", "function-app/function_app.py"],
         repoUrl: "https://github.com/imendoncauni2/dtu-special-course-iac",
         diagramTitle: "Passwordless Zero-Trust Azure Deployment",
-        diagram: `graph LR
+        diagram: `graph TD
           TF[Terraform + Remote State] --> VNET[Isolated VNet & NSG Single-IP SSH]
           VNET --> VM[Compute VM]
           VNET --> FA[Python Azure Function]
-          MI[User-Assigned Managed Identity + RBAC] -.->|Passwordless Auth| VM & FA
-          VM & FA -->|RBAC Access| STG[Azure Storage Account]`
+          MI[User-Assigned Managed Identity + RBAC] -.->|Passwordless Auth| VM
+          MI -.->|Passwordless Auth| FA
+          VM -->|RBAC Access| STG[Azure Storage Account]
+          FA -->|RBAC Access| STG`
       },
       {
-        icon: "🎯",
+        icon: icons.shield,
+        title: "AWS IAM Security Lab & Automated Compliance Auditing",
+        category: "Cloud",
+        hasDiagram: true,
+        tags: ["Terraform", "AWS IAM", "Python", "Least Privilege"],
+        summary: "Infrastructure-as-Code security lab provisioning AWS IAM resources via Terraform paired with a Python compliance and privilege auditing tool.",
+        problem: "Identifying overly permissive IAM policies, unused credentials, and privilege escalation vectors in AWS environments.",
+        highlights: [
+          "Defined IAM users, groups, roles, and custom policies declaratively with Terraform (main.tf).",
+          "Built a Python security auditor (audit_iam.py) using AWS SDKs to inspect IAM configurations and flag policy violations."
+        ],
+        files: ["main.tf", "audit_iam.py", "README.md"],
+        repoUrl: "https://github.com/imendoncauni2/aws-iam-lab",
+        diagramTitle: "AWS IAM Provisioning & Automated Audit Workflow",
+        diagram: `graph TD
+          TF[Terraform / main.tf] -->|Provisions| IAM[AWS IAM Users, Roles & Policies]
+          PY[audit_iam.py] -->|Inspects Policies| IAM
+          PY --> REP[Least-Privilege Audit Report]`
+      },
+      {
+        icon: icons.activity,
+        title: "Real-Time Process Mining vs. SIEM Rules for Multi-Stage Attack Detection",
+        category: "Security",
+        hasDiagram: true,
+        tags: ["Splunk (SPL)", "Sigma Rules", "MITRE ATT&CK", "Sysmon / EDR", "Process Mining"],
+        summary: "Research pipeline benchmarking traditional SIEM correlation rules against real-time process mining for detecting multi-stage intrusions.",
+        problem: "Static SIEM rules often miss complex, multi-stage adversary campaigns or generate high false-positive rates across noisy endpoint telemetry.",
+        highlights: [
+          "Built a Splunk detection pipeline ingesting Sysmon, Windows Security, and EDR logs with Sigma-to-SPL rules mapped to MITRE ATT&CK.",
+          "Developed a Python process-mining framework (discovery.py, online.py, eventlog.py) to model behavioral execution traces.",
+          "Benchmarked detection efficacy across benign baselines and multi-stage attack scenarios (Discovery, Bagel, LSASS credential dumping)."
+        ],
+        files: ["mining/src/discovery.py", "mining/src/online.py", "scripts/inspect/summarize.py", "siem/splunk_alerts.txt"],
+        repoUrl: "https://github.com/imendoncauni2/02234-project",
+        diagramTitle: "SIEM & Real-Time Process Mining Benchmark Architecture",
+        diagram: `graph TD
+          TEL[Sysmon / EDR / WinLogs] --> PAR[Log Parsers & Normalizers]
+          PAR --> SPL[Splunk SIEM / Sigma-to-SPL + MITRE ATT&CK]
+          PAR --> PM[Real-Time Process Mining Engine]
+          SPL --> BENCH[Detection Latency & Accuracy Benchmark]
+          PM --> BENCH`
+      },
+      {
+        icon: icons.lock,
+        title: "Secure Multi-Server TLS Communication Protocol",
+        category: "Security",
+        hasDiagram: true,
+        tags: ["Python", "TLS / SSL", "X.509 Certificates", "Socket Security"],
+        summary: "Encrypted client-server communication protocol implementing TLS encryption, digital certificate lifecycle management, and multi-server authentication.",
+        problem: "Ensuring confidentiality, message integrity, and server authenticity across distributed socket connections.",
+        highlights: [
+          "Implemented TLS-wrapped TCP sockets (servidor.py, cliente.py) preventing eavesdropping and tampering.",
+          "Built automated X.509 digital certificate and private key generation (certificados.py) for multi-server verification."
+        ],
+        files: ["servidor.py", "cliente.py", "certificados.py", "server.crt", "server.key"],
+        repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/IRC%20Chat",
+        diagramTitle: "TLS Handshake & Encrypted Multi-Client Tunnel",
+        diagram: `sequenceDiagram
+          participant C1 as Client 1 (cliente.py)
+          participant S as TLS Server (servidor.py)
+          participant C2 as Client 2 (cliente.py)
+          Note over S: Loads server.crt & server.key
+          C1->>S: TCP Connect + TLS ClientHello
+          S-->>C1: ServerHello + X.509 Certificate
+          C1->>S: Key Exchange & Cipher Spec
+          rect rgba(251, 191, 36, 0.12)
+            Note over C1,C2: Encrypted TLS Channel Active
+            C1->>S: Encrypted Payload
+            S->>C2: Authenticated Broadcast
+          end`
+      },
+      {
+        icon: icons.terminal,
         title: "Web Application Penetration Testing & RSA Reverse Engineering",
         category: "Security",
         hasDiagram: true,
@@ -579,76 +697,7 @@
           WEB-->>PY: Auth Response (Analyst / Admin Evaluation)`
       },
       {
-        icon: "☁️",
-        title: "AWS IAM Security Lab & Automated Compliance Auditing",
-        category: "Cloud",
-        hasDiagram: true,
-        tags: ["Terraform", "AWS IAM", "Python", "Least Privilege"],
-        summary: "Infrastructure-as-Code security lab provisioning AWS IAM resources via Terraform paired with a Python compliance and privilege auditing tool.",
-        problem: "Identifying overly permissive IAM policies, unused credentials, and privilege escalation vectors in AWS environments.",
-        highlights: [
-          "Defined IAM users, groups, roles, and custom policies declaratively with Terraform (main.tf).",
-          "Built a Python security auditor (audit_iam.py) using AWS SDKs to inspect IAM configurations and flag policy violations."
-        ],
-        files: ["main.tf", "audit_iam.py", "README.md"],
-        repoUrl: "https://github.com/imendoncauni2/aws-iam-lab",
-        diagramTitle: "AWS IAM Provisioning & Automated Audit Workflow",
-        diagram: `graph LR
-          TF[Terraform / main.tf] -->|Provisions| IAM[AWS IAM Users, Roles & Policies]
-          PY[audit_iam.py] -->|Inspects Policies| IAM
-          PY --> REP[Least-Privilege Audit Report]`
-      },
-      {
-        icon: "🔐",
-        title: "Secure Multi-Server TLS Communication Protocol",
-        category: "Security",
-        hasDiagram: true,
-        tags: ["Python", "TLS / SSL", "X.509 Certificates", "Socket Security"],
-        summary: "Encrypted client-server communication protocol implementing TLS encryption, digital certificate lifecycle management, and multi-server authentication.",
-        problem: "Ensuring confidentiality, message integrity, and server authenticity across distributed socket connections.",
-        highlights: [
-          "Implemented TLS-wrapped TCP sockets (servidor.py, cliente.py) preventing eavesdropping and tampering.",
-          "Built automated X.509 digital certificate and private key generation (certificados.py) for multi-server verification."
-        ],
-        files: ["servidor.py", "cliente.py", "certificados.py", "server.crt", "server.key"],
-        repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/IRC%20Chat",
-        diagramTitle: "TLS Handshake & Encrypted Multi-Client Tunnel",
-        diagram: `sequenceDiagram
-          participant C1 as Client 1 (cliente.py)
-          participant S as TLS Server (servidor.py)
-          participant C2 as Client 2 (cliente.py)
-          Note over S: Loads server.crt & server.key
-          C1->>S: TCP Connect + TLS ClientHello
-          S-->>C1: ServerHello + X.509 Certificate
-          C1->>S: Key Exchange & Cipher Spec
-          rect rgba(236, 72, 153, 0.15)
-            Note over C1,C2: Encrypted TLS Channel Active
-            C1->>S: Encrypted Payload
-            S->>C2: Authenticated Broadcast
-          end`
-      },
-      {
-        icon: "⏱️",
-        title: "Real-Time Distributed Systems & Automotive Scheduling",
-        category: "Systems",
-        hasDiagram: true,
-        tags: ["Python", "Real-Time Scheduling", "WCRT", "CBS / EDF / DM"],
-        summary: "Analytical and simulation framework evaluating Worst-Case Response Time (WCRT), Deadline Monotonic vs. EDF, and Credit-Based Shapers in automotive multi-core systems.",
-        problem: "Guaranteeing deterministic timing constraints and bounding best-effort delays across multi-core automotive tasksets under varying jitter and utilization.",
-        highlights: [
-          "Implemented analytical vs. simulated Credit-Based Shaper (CBS) models (cbs_analytical_vs_simulated.py) and DM vs. EDF schedulers (dmvsedf.py).",
-          "Evaluated Worst-Case Response Times (wcrt.py) and best-effort delays across 1-core and multi-core automotive tasksets."
-        ],
-        files: ["wcrt.py", "cbs_analytical_vs_simulated.py", "dmvsedf.py", "best_effort_delays.py", "metrics.py"],
-        repoUrl: "https://github.com/imendoncauni2/Distributed-Systems",
-        diagramTitle: "Real-Time Taskset Simulation & WCRT Analysis",
-        diagram: `graph LR
-          CSV[Automotive Tasksets CSV] --> SCHED[DM / EDF & CBS Engine]
-          SCHED --> WCRT[WCRT & Delay Metrics]
-          WCRT --> CMP[Analytical vs. Simulated Comparison]`
-      },
-      {
-        icon: "🛡️",
+        icon: icons.shield,
         title: "Endpoint USB Monitor & Access Blocker",
         category: "Security",
         hasDiagram: true,
@@ -663,7 +712,7 @@
         files: ["main.py", "detector.py", "whitelist.py", "blocker.py", "notifier.py", "templates/index.html"],
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/Car",
         diagramTitle: "USB Event Detection & Enforcement Pipeline",
-        diagram: `graph LR
+        diagram: `graph TD
           USB[USB Port Event] --> DET[detector.py]
           DET --> WL{whitelist.py}
           WL -->|Trusted ID| LOG[logger.py]
@@ -673,7 +722,27 @@
           LOG --> WEB[Web Dashboard]`
       },
       {
-        icon: "🧊",
+        icon: icons.cpu,
+        title: "Real-Time Distributed Systems & Automotive Scheduling",
+        category: "Systems",
+        hasDiagram: true,
+        tags: ["Python", "Real-Time Scheduling", "WCRT", "CBS / EDF / DM"],
+        summary: "Analytical and simulation framework evaluating Worst-Case Response Time (WCRT), Deadline Monotonic vs. EDF, and Credit-Based Shapers in automotive multi-core systems.",
+        problem: "Guaranteeing deterministic timing constraints and bounding best-effort delays across multi-core automotive tasksets under varying jitter and utilization.",
+        highlights: [
+          "Implemented analytical vs. simulated Credit-Based Shaper (CBS) models (cbs_analytical_vs_simulated.py) and DM vs. EDF schedulers (dmvsedf.py).",
+          "Evaluated Worst-Case Response Times (wcrt.py) and best-effort delays across 1-core and multi-core automotive tasksets."
+        ],
+        files: ["wcrt.py", "cbs_analytical_vs_simulated.py", "dmvsedf.py", "best_effort_delays.py", "metrics.py"],
+        repoUrl: "https://github.com/imendoncauni2/Distributed-Systems",
+        diagramTitle: "Real-Time Taskset Simulation & WCRT Analysis",
+        diagram: `graph TD
+          CSV[Automotive Tasksets CSV] --> SCHED[DM / EDF & CBS Engine]
+          SCHED --> WCRT[WCRT & Delay Metrics]
+          WCRT --> CMP[Analytical vs. Simulated Comparison]`
+      },
+      {
+        icon: icons.layers,
         title: "WebGL 3D Interactive Graphics Engine",
         category: "Graphics",
         hasDiagram: true,
@@ -687,14 +756,14 @@
         files: ["Projeto.html", "Projeto.js", "Projeto.css", "js/MV.js", "js/initShaders.js"],
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/CRG%20-%20Projeto%20WebGL",
         diagramTitle: "WebGL GPU Rendering Pipeline",
-        diagram: `graph LR
+        diagram: `graph TD
           A[Vertex Arrays & MV.js Matrices] --> B[Vertex Shader]
           B --> C[Primitive Assembly & Rasterization]
           C --> D[Fragment Shader / Lighting]
           D --> E[HTML5 Canvas Framebuffer]`
       },
       {
-        icon: "⚙️",
+        icon: icons.code,
         title: "Lexical & Syntax Analyzer (Compiler Front-End)",
         category: "Compilers",
         hasDiagram: true,
@@ -708,7 +777,7 @@
         files: ["main.py", "lexer.py", "parser.py", "parsetab.py", "testa_Lexer.py", "testa_Parser.py"],
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/ANALISADOR%20SINTATICO",
         diagramTitle: "Lexical & Syntactic Analysis Flow",
-        diagram: `graph LR
+        diagram: `graph TD
           IN[Source File] --> LEX[lexer.py]
           LEX -->|Token Stream| PAR[parser.py]
           TAB[(parsetab.py)] -.-> PAR
@@ -717,7 +786,7 @@
           RES -->|No| ERR[Syntax Error]`
       },
       {
-        icon: "🏟️",
+        icon: icons.code,
         title: "Sports Club Management System (C++)",
         category: "Compilers",
         hasDiagram: false,
@@ -732,7 +801,7 @@
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/Advanced%20Programming"
       },
       {
-        icon: "✈️",
+        icon: icons.layers,
         title: "Interactive Travel Portal & 3D Showcase",
         category: "Graphics",
         hasDiagram: false,
@@ -747,7 +816,7 @@
         repoUrl: "https://github.com/imendoncauni2/My-Projects/tree/main/CRG-%20website%20viagens"
       },
       {
-        icon: "🧩",
+        icon: icons.code,
         title: "Expression Syntax Evaluator",
         category: "Compilers",
         hasDiagram: false,
@@ -796,7 +865,7 @@
               <div>
                 <div class="project-title-row">
                   <h3>${proj.title}</h3>
-                  ${proj.hasDiagram ? '<span class="diagram-badge">+ Architecture Diagram</span>' : ''}
+                  ${proj.hasDiagram ? '<span class="diagram-badge">Architecture Diagram</span>' : ''}
                 </div>
                 <p class="project-summary">${proj.summary}</p>
                 <div class="tags">
